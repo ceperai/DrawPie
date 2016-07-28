@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		84A72ACA1D491C2B00DF9AC8 /* PieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A72AC91D491C2B00DF9AC8 /* PieView.swift */; };
 		84FA73B91CCE3CEB00FDF1CD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FA73B81CCE3CEB00FDF1CD /* AppDelegate.swift */; };
 		84FA73BB1CCE3CEB00FDF1CD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FA73BA1CCE3CEB00FDF1CD /* ViewController.swift */; };
 		84FA73BE1CCE3CEB00FDF1CD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84FA73BC1CCE3CEB00FDF1CD /* Main.storyboard */; };
@@ -15,6 +16,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		84339C7F1CCF60C800359BC2 /* Main.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Main.playground; sourceTree = "<group>"; };
+		84A72AC91D491C2B00DF9AC8 /* PieView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PieView.swift; sourceTree = "<group>"; };
 		84FA73B51CCE3CEB00FDF1CD /* DrawPie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DrawPie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84FA73B81CCE3CEB00FDF1CD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84FA73BA1CCE3CEB00FDF1CD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -56,6 +59,8 @@
 			children = (
 				84FA73B81CCE3CEB00FDF1CD /* AppDelegate.swift */,
 				84FA73BA1CCE3CEB00FDF1CD /* ViewController.swift */,
+				84A72AC91D491C2B00DF9AC8 /* PieView.swift */,
+				84339C7F1CCF60C800359BC2 /* Main.playground */,
 				84FA73BC1CCE3CEB00FDF1CD /* Main.storyboard */,
 				84FA73BF1CCE3CEB00FDF1CD /* Assets.xcassets */,
 				84FA73C11CCE3CEB00FDF1CD /* LaunchScreen.storyboard */,
@@ -137,6 +142,7 @@
 			files = (
 				84FA73BB1CCE3CEB00FDF1CD /* ViewController.swift in Sources */,
 				84FA73B91CCE3CEB00FDF1CD /* AppDelegate.swift in Sources */,
+				84A72ACA1D491C2B00DF9AC8 /* PieView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,6 +294,7 @@
 				84FA73C91CCE3CEB00FDF1CD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
