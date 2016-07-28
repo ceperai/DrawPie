@@ -57,15 +57,13 @@ class ViewController: UIViewController {
             pv.constrainToSuperview()
             pieView = pv
         }
-        pieView?.startAnimating(2)
-
-//        pv.beginAngle = -90.degrees
-//        let a = CABasicAnimation()
-//        a.fromValue = -90.degrees
-//        a.toValue = 270.degrees
-//        a.duration = 4
-//        a.keyPath = "endAngle"
-//        pv.layer.addAnimation(a, forKey: nil)
+        if let pv = pieView {
+            if pv.state == .started {
+                pv.stopAnimating()
+            } else {
+                pv.startAnimating()
+            }
+        }
     }
 
     @IBOutlet weak var imageView: UIImageView!

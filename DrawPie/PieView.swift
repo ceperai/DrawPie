@@ -24,47 +24,97 @@ class PieView: UIView {
         return PieLayer.self
     }
     
-//    var beginAngle: CGFloat = CGFloat(-M_PI_2) {
-//        didSet {
-//            pieLayer.beginAngle = beginAngle
-//        }
-//    }
-//    var endAngle: CGFloat = CGFloat(-M_PI_2) {
-//        didSet {
-//            pieLayer.endAngle = endAngle
-//        }
-//    }
     var valueColor : CGColor = UIColor.redColor().CGColor {
         didSet {
             pieLayer.valueColor = valueColor
         }
     }
     
-    func startAnimating(duration: NSTimeInterval) {
-        let angle = CGFloat(-M_PI_2)
-        pieLayer.beginAngle = angle
-        pieLayer.endAngle = angle
-        
-        let a = CABasicAnimation(keyPath: "endAngle")
-        a.fromValue = CGFloat(-M_PI_2)
-        a.toValue = CGFloat( 3/2 * M_PI)
-        a.duration = duration
-        layer.addAnimation(a, forKey: "endAngle")
+    /// Начать анимацию таймаута.
+    func startAnimating() {
+        switch state {
+        case .started, .finished:
+            state = .started
+        case .canceled:
+            break
+        }
     }
     
+    /// Прекратить анимацию таймаута и начать анимацию отмены.
     func stopAnimating() {
-        
+        switch state {
+        case .started:
+            state = .canceled
+        case .canceled, .finished:
+            break
+        }
     }
     
     private func doInit() {
         opaque = false
-//        pieLayer.beginAngle = beginAngle
-//        pieLayer.endAngle = endAngle
+        pieLayer.beginAngle = zeroAngle
+        pieLayer.endAngle   = zeroAngle
         pieLayer.valueColor = valueColor
         setNeedsDisplay()
     }
     
+    private func startTimeoutAnimation() {
+        layer.removeAnimationForKey("endAngle")
+        
+        let a = CABasicAnimation(keyPath: "endAngle")
+        a.fromValue = zeroAngle
+        a.toValue = CGFloat( 3/2 * M_PI)
+        a.duration = timeoutAnimationDuration
+        a.delegate = self
+        layer.addAnimation(a, forKey: "endAngle")
+    }
+    
+    private func startCancelAnimation() {
+        layer.removeAnimationForKey("endAngle")
+        
+        let a = CABasicAnimation(keyPath: "endAngle")
+        a.fromValue = layer.presentationLayer()?.valueForKey("endAngle")
+        a.toValue = zeroAngle
+        a.duration = cancelAnimationDuration
+        a.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        layer.addAnimation(a, forKey: "endAngle")
+    }
+    
+    /// Время анимации таймаута.
+    var timeoutAnimationDuration: NSTimeInterval = 4
+    /// Время анимации отмены таймаута.
+    var cancelAnimationDuration: NSTimeInterval = 0.3
+    
+    /// Состояние анимации.
+    enum State { case started, canceled, finished }
+    /// Текущее состояние анимации.
+    private (set) var state: State = .finished {
+        didSet {
+            switch state {
+            case .started:
+                startTimeoutAnimation()
+            case .canceled:
+                startCancelAnimation()
+                state = .finished
+            case .finished:
+                break
+            }
+        }
+    }
+    private let zeroAngle = CGFloat(-M_PI_2)
+    
     private var pieLayer: PieLayer { return layer as! PieLayer }
+}
+
+extension PieView {
+    
+//    override func animationDidStart(anim: CAAnimation) {
+//        state = .started
+//    }
+    
+    override func animationDidStop(anim: CAAnimation, finished flag: Bool) {
+        state = flag ? .finished : .canceled
+    }
 }
 
 // у кастомного layer добавить пару свойств
@@ -73,15 +123,6 @@ class PieLayer: CALayer {
     @NSManaged var endAngle   : CGFloat
     @NSManaged var valueColor : CGColor
     
-//    override func actionForKey(event: String) -> CAAction? {
-//        if ["beginAngle", "endAngle"].contains(event) {
-//            let action = CABasicAnimation()
-//            action.fromValue = presentationLayer()?.valueForKey(event)
-//            action.duration = animationDuration
-//            return action
-//        }
-//        return super.actionForKey(event)
-//    }
     override init() {
         super.init()
     }
