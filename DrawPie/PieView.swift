@@ -8,7 +8,7 @@
 
 import UIKit
 
-// Сделать view c кастомным layer
+/// Класс для рисования анимированного Pie c заданными временами и анимированной отменой.
 class PieView: UIView {
     
     override init(frame: CGRect) {
@@ -17,13 +17,15 @@ class PieView: UIView {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)
+        doInit()
     }
     
     override class func layerClass() -> AnyClass {
         return PieLayer.self
     }
     
+    /// Цвет заливки Pie
     var valueColor : CGColor = UIColor.redColor().CGColor {
         didSet {
             pieLayer.valueColor = valueColor
