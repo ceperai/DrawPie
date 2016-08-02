@@ -35,6 +35,12 @@ final class ViewController: UIViewController {
     @IBAction func startorCancel(sender: AnyObject) {
         if pieView == nil {
             let pv = PieView( frame: .zero )
+            pv.completionBlock = { [weak self] (_) in
+                (sender as? UIButton)?.setTitle("Start animation", forState: .Normal)
+                (sender as? UIButton)?.enabled = true
+                self?.pieView?.removeFromSuperview()
+                self?.pieView = nil
+            }
             
             capieView.addSubview( pv )
             pv.translatesAutoresizingMaskIntoConstraints = false
@@ -44,8 +50,10 @@ final class ViewController: UIViewController {
         if let pv = pieView {
             if pv.state == .started {
                 pv.stopAnimating()
+                (sender as? UIButton)?.enabled = false
             } else {
                 pv.startAnimating()
+                (sender as? UIButton)?.setTitle("Cancel animation", forState: .Normal)
             }
         }
     }

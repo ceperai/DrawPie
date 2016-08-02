@@ -19,12 +19,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aYZ-JY-H8K">
-                                <rect key="frame" x="40" y="380" width="240" height="168"/>
-                                <color key="backgroundColor" red="1" green="0.28627452254295349" blue="0.066666670143604279" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <rect key="frame" x="16" y="67" width="288" height="185"/>
+                                <color key="backgroundColor" red="0.2588235438" green="0.70980393890000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="185" id="rIz-M3-QEY"/>
+                                </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wS7-kD-xrN">
-                                <rect key="frame" x="274" y="349" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wS7-kD-xrN">
+                                <rect key="frame" x="176" y="36" width="128" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="128" id="RPz-RN-gJe"/>
+                                </constraints>
+                                <state key="normal" title="Start animation"/>
                                 <connections>
                                     <action selector="startorCancel:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ccm-GJ-amD"/>
                                 </connections>
@@ -32,12 +38,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="wS7-kD-xrN" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="329" id="Olx-be-2Qo"/>
+                            <constraint firstItem="aYZ-JY-H8K" firstAttribute="trailing" secondItem="wS7-kD-xrN" secondAttribute="trailing" id="GR6-nu-RRR"/>
+                            <constraint firstItem="wS7-kD-xrN" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="16" id="Olx-be-2Qo"/>
                             <constraint firstItem="aYZ-JY-H8K" firstAttribute="top" secondItem="wS7-kD-xrN" secondAttribute="bottom" constant="1" id="PD4-je-YL8"/>
-                            <constraint firstAttribute="bottom" secondItem="aYZ-JY-H8K" secondAttribute="bottom" constant="20" symbolic="YES" id="ScD-Id-EnH"/>
                             <constraint firstItem="aYZ-JY-H8K" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="VYU-zJ-Jmm"/>
-                            <constraint firstAttribute="trailing" secondItem="wS7-kD-xrN" secondAttribute="trailing" id="dTr-oA-sX7"/>
-                            <constraint firstItem="aYZ-JY-H8K" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="24" id="h9c-RT-KjW"/>
+                            <constraint firstItem="aYZ-JY-H8K" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="h9c-RT-KjW"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
